@@ -3,10 +3,12 @@ namespace BShips;
 public class Map
 {
     public readonly Cell[,] Grid;
-    public Map()
+    public readonly string Name;
+    public Map(string name)
     {
         var grid = new Cell[10, 10];
         Grid = grid;
+        Name = name;
 
         for (var i = 0; i < 10; i++)
         {
@@ -26,6 +28,7 @@ public class Map
 
     public static void DrawMap(Map map)
     {
+        Console.WriteLine("{0}", map.Name);
         Console.WriteLine("  0 1 2 3 4 5 6 7 8 9 x");
         for (var i = 0; i < 10; i++)
         {

@@ -1,37 +1,29 @@
 ﻿using System.Drawing;
 using BShips;
 
-//my battle ship game
-/*var playerFleet = new Fleet();
+
+var playerFleet = new Fleet();
 var enemyFleet = new Fleet();
-var playerOcean = new Map();
-var playerTracking = new Map();
-var enemyOcean = new Map();
-var enemyTracking = new Map();
+var playerMap = new Map("Player Map");
+var enemyMap = new Map("Enemy Map");
+var playerTracking = new Map("player Tracking");
+var enemyTracking = new Map("Enemy Tracking");
+var ui = new UserInput();
 
 //debug();
 
-Fleet.Fleet2Map(playerOcean, playerFleet.TheFleet);
-Fleet.Fleet2Map(enemyOcean, enemyFleet.TheFleet);
+Fleet.Fleet2Map(playerMap, playerFleet.TheFleet);
+Fleet.Fleet2Map(enemyMap, enemyFleet.TheFleet);
+Map.DrawMap(playerMap);
 Map.DrawMap(playerTracking);
-Map.DrawMap(playerOcean);
+Map.DrawMap(enemyMap);
 Map.DrawMap(enemyTracking);
-Map.DrawMap(enemyOcean);*/
-
-var prevEnemyGuesses = new List<Point>(){Capacity = 100};
+var PlayerXyTarget = UserInput.GetPlayerXy();
+var prevPlayerGuesses = new List<Point>() { Capacity = 100 };
+var prevEnemyGuesses = new List<Point>(){ Capacity = 100 };
 var enemyAi = new EnemyAi();
-for (var i = 0; i < 100; i++)
-{
-    enemyAi.RandomGuess(prevEnemyGuesses);
-    Console.Clear();
-    Console.Write(i);
-}
 
-Console.Clear();
-foreach (var p in prevEnemyGuesses.ToList())
-{
-    Console.WriteLine(p.ToString());
-}
+
 
 /*void Debug()
 {
