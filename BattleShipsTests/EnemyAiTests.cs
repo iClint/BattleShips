@@ -13,7 +13,7 @@ public class BattleShipsUnitTest
         var sut = new EnemyAi();
 
         //Act
-        var guess = sut.RandomGuess(prevEnemyGuesses);
+        var guess = EnemyAi.RandomGuess(prevEnemyGuesses);
         
         //Assert
         Assert.True(guess.X is >= 0 and <= 9 && guess.Y is >=0 and <=9);
@@ -30,7 +30,7 @@ public class BattleShipsUnitTest
         //Act
         for (var i = 0; i < 100; i++)
         {
-            sut.RandomGuess(prevEnemyGuesses);
+            EnemyAi.RandomGuess(prevEnemyGuesses);
         }
 
         if (prevEnemyGuesses.Count != prevEnemyGuesses.Distinct().Count())
@@ -49,6 +49,6 @@ public class BattleShipsUnitTest
         var sut = new EnemyAi();
         
         //Act and Assert
-        Assert.Throws<OperationCanceledException>(() => sut.RandomGuess(prevEnemyGuesses));
+        Assert.Throws<OperationCanceledException>(() => EnemyAi.RandomGuess(prevEnemyGuesses));
     }
 }
