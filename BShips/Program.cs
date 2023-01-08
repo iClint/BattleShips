@@ -67,7 +67,7 @@ var enemyAi = new EnemyAi();
 
 /*void Debug()
 {
-    foreach (var ship in playerFleet!.TheFleet)
+    foreach (var ship in playerFleet!.Ships)
     {
         Console.WriteLine($"\nClass {ship.ShipName}");
         Console.WriteLine($"Length: {ship.Length}");
