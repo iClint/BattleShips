@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using BShips;
 
-
+Console.Clear();
 var playerFleet = new Fleet();
 var enemyFleet = new Fleet();
 var playerMap = new Map("Player Map");
