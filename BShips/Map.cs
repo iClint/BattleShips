@@ -21,15 +21,15 @@ public class Map
 
     public class Cell
     {
-        public bool Occupied = false;
-        public bool Targeted = false;
+        public bool Occupied;
+        public bool Targeted;
         public string? Symbol;
     }
 
     public static void DrawMap(Map map)
     {
         Console.WriteLine("{0}", map.Name);
-        Console.WriteLine("  0 1 2 3 4 5 6 7 8 9 x");
+        Console.WriteLine("  0 1 2 3 4 5 6 7 8 9 y");
         for (var i = 0; i < 10; i++)
         {
             Console.Write($"{i} ");
