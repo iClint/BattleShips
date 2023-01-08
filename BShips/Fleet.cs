@@ -4,9 +4,9 @@ namespace BShips;
 
 public class Fleet
 {
-
-    public readonly Ship[] TheFleet;
+    public readonly Ship[] Ships;
     public readonly List<Point> OccupiedCells;
+    
     public Fleet()
     {
         var shipList = new[]
@@ -14,7 +14,7 @@ public class Fleet
         var fleet = new Ship[5];
         var occupiedCells = new List<Point>();
 
-        TheFleet = fleet;
+        Ships = fleet;
         OccupiedCells = occupiedCells;
         
         foreach (var ship in shipList)
@@ -27,6 +27,7 @@ public class Fleet
         }
     }
 
+    // Populates map with ship coordinates.
     public static void Fleet2Map(Map map, IEnumerable<Ship> ships)
     {
         foreach (var ship in ships)
