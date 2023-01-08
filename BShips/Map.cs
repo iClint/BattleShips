@@ -35,7 +35,10 @@ public class Map
             Console.Write($"{i} ");
             for (var j = 0; j < 10; j++)
             {
-                var s = (map.Grid[i,j].Occupied == false ? "." : map.Grid[i,j].Symbol);
+
+                var s = map.Grid[i, j].Occupied == false ? "." : map.Grid[i, j].Symbol;
+                if (map.Grid[i, j].Targeted) s = "*";
+                if (map.Grid[i, j].Targeted && map.Grid[i, j].Occupied) s = "#";
                 Console.Write($"{s} ");
             }
             Console.WriteLine();
