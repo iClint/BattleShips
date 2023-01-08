@@ -43,7 +43,46 @@ public class Map
             }
             Console.WriteLine();
         }
-        Console.WriteLine("y");
+        Console.WriteLine("x");
+    }
+
+    public static ShotFiredResult CheckTargetedXy(Point xy, Map map,Map tracking, Fleet fleet)
+    {
+        var x = xy.X;
+        var y = xy.Y;
+        var alreadyTargeted = tracking.Grid[x, y].Targeted;
+        if (alreadyTargeted) return new ShotFiredResult(false, null, true);
+        var hit = (map.Grid[x, y].Occupied);
+        if (hit) tracking.Grid[x, y].Occupied = true;
+        ShipName? ship = map.Grid[x, y].Symbol switch
+        {
+            "B" => ShipName.Battleship,
+            "C" => ShipName.Carrier,
+            "D" => ShipName.Destroyer,
+            "S" => ShipName.Submarine,
+            "P" => ShipName.PatrolBoat,
+            _ => null
+        };
+        if (ship == null) return new ShotFiredResult(hit, ship, false);
+        if (hit) fleet.Ships[(int)ship!].HitCount++;
+        if (fleet.Ships[(int)ship!].HitCount == fleet.Ships[(int)ship!].Length)
+            fleet.Ships[(int)ship!].IsSunk = true;
+
+        return new ShotFiredResult(hit, ship, false);
+    }
+
+    public class ShotFiredResult
+    {
+        public readonly bool Hit;
+        public ShipName? Ship;
+        public readonly bool IsAlreadyTargeted;
+
+        public ShotFiredResult(bool hit, ShipName? ship, bool isAlreadyTargeted)
+        {
+            Hit = hit;
+            Ship = ship;
+            IsAlreadyTargeted = isAlreadyTargeted;
+        }
     }
 }
 
