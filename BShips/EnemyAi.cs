@@ -4,9 +4,9 @@ namespace BShips;
 
 public class EnemyAi
 {
-    public Point RandomGuess(List<Point> enemyGuesses)
+    public static Point RandomGuess(List<Point> enemyGuesses)
     {
-        if (enemyGuesses.Count() == enemyGuesses.Capacity) throw new OperationCanceledException("Maximum guesses reached!");
+        if (enemyGuesses.Count == enemyGuesses.Capacity) throw new OperationCanceledException("Maximum guesses reached!");
             var rnd = new Random(Guid.NewGuid().GetHashCode());
             var guess = new Point();
             var isValid = false;
@@ -22,8 +22,29 @@ public class EnemyAi
                 isValid = true;
                 enemyGuesses.Add(guess);
             }
-
             return guess;
+    }
+
+    public static Point SearchAndDestroy(Point hit)
+    {
+        var possibleCoordinates = new Point[]
+        {
+            new Point {X = hit.X-1, Y = hit.Y},
+            new Point {X = hit.X+1, Y = hit.Y},
+            new Point {X = hit.X, Y = hit.Y-1},
+            new Point {X = hit.X, Y = hit.Y+1}
+        };
+
+        for (var i = 0; i < 4; i++)
+        {
+            if (possibleCoordinates[i].X is < 0 or > 9 || 
+                possibleCoordinates[i].Y is < 0 or > 9) possibleCoordinates[i] = Point.Empty;
+        }
+
+        var rnd = new Random(Guid.NewGuid().GetHashCode());
+
+        var nextguess = possibleCoordinates[rnd.Next(0, 5)];
+        return Point.Empty;
     }
 }
 
